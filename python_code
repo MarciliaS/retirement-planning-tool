@@ -1,0 +1,42 @@
+expected_retiement_age = int(input('Enter your expected retimeent age\n'))
+investment_rate = 0.03
+annual_spending = 60000
+years_in_retirement = 30
+# Ask user for current age
+
+current_age = int(input("Enter your current age: "))
+
+# Calculate years until retirement
+
+years_until_retirement = expected_retiement_age - current_age
+
+# Print years until retirement
+
+print(f"You have {years_until_retirement} years until you can retire.")
+
+# Collect input for the annual savings amount
+annual_savings = float(input("Enter the annual amount you can save: "))
+
+# Calculate total savings at retirement
+total_savings = annual_savings * years_until_retirement
+
+print(f"\nTotal savings by retirement: ${total_savings:.2f}")
+print("\nRetirement savings schedule with 3% interest rate and $60,000 annual spending:\n")
+
+current_balance_a_year = annual_savings
+balance = total_savings
+# Initialize balance with the total savings
+
+
+for year in range(1, years_in_retirement + 1):
+    
+    current_balance_a_year += current_balance_a_year * investment_rate
+    balance += balance * investment_rate
+    balance -= annual_spending
+    print(f"Year {year}:")
+    print(f"   - On your {year} year your saved: ${current_balance_a_year:.2f}")
+    print(f"   - Balance after spending: ${balance:.2f}")
+    
+    if balance <= 0 or balance < 60000:
+        print(f"\nSavings depleted after {year} years.")
+        break
